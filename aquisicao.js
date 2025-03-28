@@ -1,8 +1,6 @@
 // Aluna: Anne Izabelle. Curso: Ciência da Computação.
 
 function calcularTotal(preco, quantidade) {
-    console.log("Preço unitário:", preco);
-    console.log("Quantidade de produtos:", quantidade);
     return preco * quantidade;
 }
 
@@ -17,7 +15,6 @@ function exibirResumo() {
     let preco = parseFloat(prompt("Digite o preço unitário do produto:"));
     let quantidade = parseInt(prompt("Digite a quantidade adquirida:"));
 
-
     if (isNaN(preco) || isNaN(quantidade) || preco <= 0 || quantidade <= 0) {
         alert("Por favor, insira valores válidos.");
         return;
@@ -26,13 +23,17 @@ function exibirResumo() {
     let valorTotal = calcularTotal(preco, quantidade);
     let valorComDesconto = aplicarDesconto(valorTotal);
 
+    let resumoDiv = document.getElementById("resumo");
 
-    console.log("Resumo da aquisição:");
-    console.log("Quantidade de produtos:", quantidade);
-    console.log("Valor total antes do desconto: R$", valorTotal.toFixed(2));
-    console.log("Valor final com desconto: R$", valorComDesconto.toFixed(2));
+    resumoDiv.innerHTML = `
+        <h2>Resumo da Aquisição:</h2>
+        <p><strong>Quantidade de produtos:</strong> ${quantidade}</p>
+        <p><strong>Valor total antes do desconto:</strong> R$ ${valorTotal.toFixed(2)}</p>
+        <p><strong>Valor final com desconto:</strong> R$ ${valorComDesconto.toFixed(2)}</p>
+    `;
 }
 
+// Professor, a parte abaixo é para garantir que o código funcione após o carregamento completo da página
 window.onload = function () {
     exibirResumo();
 };
